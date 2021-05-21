@@ -9,7 +9,10 @@ import (
 )
 
 func init() {
-	rootCmd.AddCommand(versionCmd)
+	rootCmd.AddCommand(
+		printenvCmd,
+		versionCmd,
+	)
 }
 
 var rootCmd = &cobra.Command{
@@ -25,6 +28,16 @@ var versionCmd = &cobra.Command{
 	Short: "ToolBox version",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("ToolBox version 0.0.1")
+	},
+}
+
+var printenvCmd = &cobra.Command{
+	Use:   "printenv",
+	Short: "printenv utility",
+	Run: func(cmd *cobra.Command, args []string) {
+		for _, env := range os.Environ() {
+			fmt.Println(env)
+		}
 	},
 }
 
