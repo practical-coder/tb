@@ -27,8 +27,8 @@ func printenv(args []string) {
 
 		}
 	} else {
-		for _, key := range os.Environ() {
-			fmt.Println(key)
+		for _, env := range os.Environ() {
+			fmt.Println(env)
 		}
 	}
 }
