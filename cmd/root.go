@@ -31,23 +31,6 @@ var versionCmd = &cobra.Command{
 	},
 }
 
-var printenvCmd = &cobra.Command{
-	Use:   "printenv",
-	Short: "printenv utility",
-	Run: func(cmd *cobra.Command, args []string) {
-		if len(args) > 0 {
-			for _, key := range args {
-				fmt.Println(os.Getenv(key))
-			}
-		} else {
-			for _, key := range os.Environ() {
-				fmt.Println(key)
-			}
-		}
-
-	},
-}
-
 func Execute() {
 	err := rootCmd.Execute()
 	if err != nil {
