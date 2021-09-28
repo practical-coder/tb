@@ -12,6 +12,7 @@ import (
 
 func init() {
 	rootCmd.AddCommand(
+		netCmd,
 		printenvCmd,
 		pwdCmd,
 		timeCmd,
@@ -33,7 +34,7 @@ var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "ToolBox version",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("ToolBox version 0.0.2")
+		fmt.Println("ToolBox version 0.0.3")
 	},
 }
 
