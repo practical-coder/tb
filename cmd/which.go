@@ -8,7 +8,8 @@ import (
 
 var whichCmd = &cobra.Command{
 	Use:   "which",
-	Short: "which functionality - find absolute paths of executables in arguments",
+	Short: "search $PATH for executables",
+	Long: "search $PATH for executables, print absolute paths",
 	Run: func(cmd *cobra.Command, args []string) {
 		which.Find(args...)
 	},
