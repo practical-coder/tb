@@ -14,6 +14,7 @@ func init() {
 	rootCmd.AddCommand(
 		printenvCmd,
 		pwdCmd,
+		timeCmd,
 		whichCmd,
 		versionCmd,
 	)
