@@ -12,6 +12,7 @@ func init() {
 	rootCmd.AddCommand(
 		printenvCmd,
 		pwdCmd,
+		whichCmd,
 		versionCmd,
 	)
 }
@@ -30,7 +31,7 @@ var versionCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("ToolBox version 0.0.1")
 	},
- }
+}
 
 func Execute() {
 	err := rootCmd.Execute()
