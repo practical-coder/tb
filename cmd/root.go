@@ -2,8 +2,10 @@ package cmd
 
 import (
 	"fmt"
-	"log"
 	"os"
+
+	"github.com/rs/zerolog"
+	"github.com/rs/zerolog/log"
 
 	"github.com/spf13/cobra"
 )
@@ -15,6 +17,7 @@ func init() {
 		whichCmd,
 		versionCmd,
 	)
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
 }
 
 var rootCmd = &cobra.Command{
@@ -36,7 +39,7 @@ var versionCmd = &cobra.Command{
 func Execute() {
 	err := rootCmd.Execute()
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal().Err(err)
 		os.Exit(1)
 	}
 }

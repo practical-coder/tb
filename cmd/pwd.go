@@ -2,9 +2,10 @@ package cmd
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"path/filepath"
+
+	"github.com/rs/zerolog/log"
 
 	"github.com/spf13/cobra"
 )
@@ -28,14 +29,14 @@ var pwdCmd = &cobra.Command{
 func pwd(args []string) {
 	path, err := os.Getwd()
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal().Err(err)
 	} else {
 		if !pwdPhysical {
 			fmt.Println(path)
 		} else {
 			path, err = filepath.EvalSymlinks(path)
 			if err != nil {
-				log.Fatal(err)
+				log.Fatal().Err(err)
 			} else {
 				fmt.Println(path)
 			}
