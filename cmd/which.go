@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"fmt"
 	"tb/which"
 
 	"github.com/rs/zerolog/log"
@@ -16,6 +17,9 @@ var whichCmd = &cobra.Command{
 			log.Info().Msgf("which requires at least one executable as argument: which <exec1> <exec2> <exec3> ...\n\n")
 			cmd.Help()
 		}
-		which.Find(args...)
+
+		for _, line := range which.Find(args...) {
+			fmt.Println(line)
+		}
 	},
 }

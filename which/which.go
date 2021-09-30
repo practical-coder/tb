@@ -1,7 +1,6 @@
 package which
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
 )
@@ -23,13 +22,16 @@ func ExecutableExists(filePath string) bool {
 	return false
 }
 
-func Find(names ...string) {
+func Find(names ...string) []string {
+	list := make([]string, 0)
 	for _, directory := range PathList() {
 		for _, name := range names {
 			filePath := filepath.Join(directory, name)
 			if ExecutableExists(filePath) {
-				fmt.Println(filePath)
+				list = append(list, filePath)
 			}
 		}
 	}
+
+	return list
 }
