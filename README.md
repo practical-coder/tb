@@ -1,2 +1,2 @@
-# tb
-Toolbox: assortment of useful command line tools
+# ToolBox - tb
+ToolBox is an assortment of useful command line tools
