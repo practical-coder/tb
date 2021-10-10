@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"tb/net"
+	"github.com/practical-coder/tb/net"
 
 	"github.com/spf13/cobra"
 )
@@ -22,10 +22,10 @@ var netCmd = &cobra.Command{
 }
 
 var netLookupCmd = &cobra.Command{
-	Use:   "lookup",
+	Use:     "lookup",
 	Example: "lookup google.com",
-	Short: "Lookup domain IP address.",
-	Long:  "Lookup domain IP address.",
+	Short:   "Lookup domain IP address.",
+	Long:    "Lookup domain IP address.",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) != 1 {
 			cmd.Help()

@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"tb/datetime"
+	"github.com/practical-coder/tb/datetime"
 
 	"github.com/spf13/cobra"
 )

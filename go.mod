@@ -1,4 +1,4 @@
-module tb
+module github.com/practical-coder/tb
 
 go 1.17
 

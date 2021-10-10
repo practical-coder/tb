@@ -2,7 +2,8 @@ package cmd
 
 import (
 	"fmt"
-	"tb/which"
+
+	"github.com/practical-coder/tb/which"
 
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"tb/cmd"
+	"github.com/practical-coder/tb/cmd"
 )
 
 func main() {
