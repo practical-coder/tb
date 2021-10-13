@@ -23,4 +23,22 @@ func Listener(address string) {
 	log.Info().
 		Msgf("Bound to %q\n", listener.Addr())
 
+	for {
+		conn, err := listener.Accept()
+		if err != nil {
+			log.Error().
+				Err(err).
+				Msg("net Accept Error")
+		}
+
+		go func(conn net.Conn) {
+			defer conn.Close()
+
+			log.Info().
+				Interface("local_address", conn.LocalAddr()).
+				Interface("remote_address", conn.RemoteAddr()).
+				Msg("Connection Established")
+		}(conn)
+	}
+
 }
