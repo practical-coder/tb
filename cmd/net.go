@@ -40,12 +40,12 @@ var netLookupCmd = &cobra.Command{
 
 var netSrvCmd = &cobra.Command{
 	Use:     "srv",
-	Example: "srv 7777",
-	Short:   "TCP basic server listening on a given <port>",
-	Long:    "TCP basic server listening on a given <port>",
+	Example: "srv 127.0.0.1:7777",
+	Short:   "TCP basic server listening on a given <host:port>",
+	Long:    "TCP basic server listening on a given <host:port>",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) != 1 {
-			log.Info().Msg("One argument required: <port_number> range 1024-65535")
+			log.Info().Msg("One argument required: <host:port>")
 			cmd.Help()
 			return
 		}
