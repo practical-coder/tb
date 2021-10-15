@@ -55,3 +55,29 @@ func TestDialContext(t *testing.T) {
 		t.Errorf("DeadlineExceeded expected! Got: %v", ctx.Err())
 	}
 }
+
+func TestDialContextCancel(t *testing.T) {
+	ctx, cancel := context.WithCancel(context.Background())
+
+	var dialer net.Dialer
+	dialer.Control = func(_, _ string, _ syscall.RawConn) error {
+		t.Log("In custom dialer.Control!")
+		time.Sleep(1 * time.Second)
+		return nil
+	}
+
+	go func() {
+		conn, err := dialer.DialContext(ctx, "tcp", "10.7.7.7:http")
+		if err != nil {
+			t.Error("DialContext failed")
+		}
+		conn.Close()
+	}()
+	time.Sleep(100 * time.Millisecond)
+	cancel()
+
+	if ctx.Err() != context.Canceled {
+		t.Error(ctx.Err())
+		t.Error("Something went wrong. Context should be Canceled")
+	}
+}
