@@ -6,42 +6,44 @@ import (
 	"io"
 )
 
-type Binary []byte
+type String string
 
-func (b Binary) Bytes() []byte {
-	return b
+func (s String) Bytes() []byte {
+	return []byte(s)
 }
 
-func (b Binary) String() string {
-	return string(b)
+func (s String) String() string {
+	return string(s)
 }
 
-func (b Binary) WriteTo(w io.Writer) (int64, error) {
-	err := binary.Write(w, binary.BigEndian, BinaryType)
+func (s String) WriteTo(w io.Writer) (int64, error) {
+	err := binary.Write(w, binary.BigEndian, StringType)
 	if err != nil {
 		return 0, err
 	}
 	var n int64 = 1
 
-	err = binary.Write(w, binary.BigEndian, uint32(len(b)))
+	err = binary.Write(w, binary.BigEndian, uint32(len(s)))
 	if err != nil {
 		return n, err
 	}
 	n += 4
 
-	o, err := w.Write(b)
+	o, err := w.Write([]byte(s))
+
 	return n + int64(o), err
 }
 
-func (b *Binary) ReadFrom(r io.Reader) (int64, error) {
+func (s *String) ReadFrom(r io.Reader) (int64, error) {
 	var payloadType uint8
 	err := binary.Read(r, binary.BigEndian, &payloadType)
 	if err != nil {
 		return 0, err
 	}
 	var n int64 = 1
-	if payloadType != BinaryType {
-		return n, errors.New("Invalid Type of Binary")
+
+	if payloadType != StringType {
+		return n, errors.New("Invalid Type of StringType")
 	}
 
 	var size uint32
@@ -55,8 +57,9 @@ func (b *Binary) ReadFrom(r io.Reader) (int64, error) {
 		return n, ErrMaxPayloadSize
 	}
 
-	*b = make([]byte, size)
-	o, err := r.Read(*b)
+	buf := make([]byte, size)
+	o, err := r.Read(buf)
+	*s = String(buf)
 
 	return n + int64(o), err
 }
