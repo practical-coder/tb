@@ -2,6 +2,7 @@ package types
 
 import (
 	"encoding/binary"
+	"errors"
 	"io"
 )
 
@@ -39,6 +40,9 @@ func (b Binary) ReadFrom(r io.Reader) (int64, error) {
 		return 0, err
 	}
 	var n int64 = 1
+	if payloadType != BinaryType {
+		return n, errors.New("Invalid Type of Binary")
+	}
 
 	var size uint32
 	err = binary.Read(r, binary.BigEndian, &size)
