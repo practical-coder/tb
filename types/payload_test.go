@@ -1,6 +1,8 @@
 package types
 
 import (
+	"bytes"
+	"encoding/binary"
 	"net"
 	"reflect"
 	"testing"
@@ -52,5 +54,24 @@ func TestPayload(t *testing.T) {
 		}
 
 		t.Logf("[%T] %[1]q", actual)
+	}
+}
+
+func TestMaxPayloadSize(t *testing.T) {
+	buf := new(bytes.Buffer)
+	err := buf.WriteByte(BinaryType)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	err = binary.Write(buf, binary.BigEndian, uint32(1<<30)) // 1GB
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	var b Binary
+	_, err = b.ReadFrom(buf)
+	if err != ErrMaxPayloadSize {
+		t.Fatalf("ErrMaxPayloadSize expected, actual: %v", err)
 	}
 }
