@@ -6,12 +6,12 @@ import (
 )
 
 func proxy(source io.Reader, destination io.Writer) error {
-	sourceReader, isSourceReader := source.(io.Reader)
-	destinationWriter, isDestinationWriter := destination.(io.Writer)
+	sourceWriter, isSourceWriter := source.(io.Writer)
+	destinationReader, isDestinationReader := destination.(io.Reader)
 
-	if isSourceReader && isDestinationWriter {
+	if isSourceWriter && isDestinationReader {
 		go func() {
-			_, _ = io.Copy(destinationWriter, sourceReader)
+			_, _ = io.Copy(sourceWriter, destinationReader)
 		}()
 	}
 
