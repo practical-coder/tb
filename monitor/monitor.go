@@ -7,5 +7,9 @@ type Monitor struct {
 }
 
 func (m *Monitor) Write(p []byte) (int, error) {
-	return len(p), m.Output(2, string(p))
+	err := m.Output(2, string(p))
+	if err != nil {
+		log.Println(err)
+	}
+	return len(p), nil
 }
