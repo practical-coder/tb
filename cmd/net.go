@@ -11,6 +11,7 @@ func init() {
 	netCmd.AddCommand(
 		netLookupCmd,
 		netSrvCmd,
+		netPingCmd,
 	)
 }
 
