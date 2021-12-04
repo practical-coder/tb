@@ -14,6 +14,7 @@ func init() {
 	rootCmd.AddCommand(
 		cryptoCmd,
 		netCmd,
+		tftpCmd,
 		printenvCmd,
 		pwdCmd,
 		timeCmd,
