@@ -52,10 +52,10 @@ var cryptoMD5Cmd = &cobra.Command{
 }
 
 var cryptoSHA256Cmd = &cobra.Command{
-	Use:     "sha256",
-	Example: "sha256 example_text",
-	Short:   "sha256 hash function on files in arguments",
-	Long:    "sha256 hash function on files in arguments",
+	Use:     "sha512",
+	Example: "sha512 example_text",
+	Short:   "sha512/256 hash function on files in arguments",
+	Long:    "sha512/256 hash function on files in arguments",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
 			cmd.Help()
