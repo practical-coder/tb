@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"crypto/md5"
-	"crypto/sha256"
+	"crypto/sha512"
 	"fmt"
 	"io/ioutil"
 
@@ -69,7 +69,7 @@ var cryptoSHA256Cmd = &cobra.Command{
 				continue
 			}
 
-			fmt.Printf("%s\tSHA256: %x\n", filename, sha256.Sum256(file))
+			fmt.Printf("%s\tSHA512/256: %x\n", filename, sha512.Sum512_256(file))
 		}
 	},
 }
