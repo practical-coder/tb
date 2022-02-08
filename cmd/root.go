@@ -15,6 +15,7 @@ func init() {
 		cryptoCmd,
 		netCmd,
 		tftpCmd,
+		txtCmd,
 		printenvCmd,
 		pwdCmd,
 		timeCmd,
