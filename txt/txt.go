@@ -1,7 +1,9 @@
 package txt
 
 import (
-	"fmt"
+	"bufio"
+	"bytes"
+	"io"
 	"io/ioutil"
 	"os"
 
@@ -24,9 +26,38 @@ func Count(path string) {
 			Msgf("Error reading file: %s", path)
 	}
 
+	b := bytes.NewReader(data)
+	w := bytes.NewReader(data)
+	l := bytes.NewReader(data)
+
 	log.Info().
 		Str("file", path).
-		Str("count", fmt.Sprintf("%d", len(data))).
-		Msg("Number of bytes counted")
+		Int("lines", countLines(l)).
+		Int("words", countWords(w)).
+		Int("bytes", countBytes(b)).
+		Msg("")
 
+}
+
+func count(r io.Reader, splitFunc bufio.SplitFunc) int {
+	s := bufio.NewScanner(r)
+	s.Split(splitFunc)
+	counter := 0
+	for s.Scan() {
+		counter++
+	}
+
+	return counter
+}
+
+func countBytes(r io.Reader) int {
+	return count(r, bufio.ScanBytes)
+}
+
+func countWords(r io.Reader) int {
+	return count(r, bufio.ScanWords)
+}
+
+func countLines(r io.Reader) int {
+	return count(r, bufio.ScanLines)
 }
