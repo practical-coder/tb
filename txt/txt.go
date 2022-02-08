@@ -35,6 +35,7 @@ func Count(path string) {
 		Int("lines", countLines(l)).
 		Int("words", countWords(w)).
 		Int("bytes", countBytes(b)).
+		Int("runes", countRunes(data)).
 		Msg("")
 
 }
@@ -60,4 +61,9 @@ func countWords(r io.Reader) int {
 
 func countLines(r io.Reader) int {
 	return count(r, bufio.ScanLines)
+}
+
+func countRunes(data []byte) int {
+	runes := []rune(string(data))
+	return len(runes)
 }

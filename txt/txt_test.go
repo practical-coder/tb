@@ -31,3 +31,12 @@ func TestBytes(t *testing.T) {
 		t.Errorf("countBytes Error actual: %d expected: %d", actual, expected)
 	}
 }
+
+func TestRunes(t *testing.T) {
+	buff := []byte("gźegźółka")
+	expected := 9
+	actual := countRunes(buff)
+	if actual != expected {
+		t.Errorf("countRunes Error actual: %d expected: %d", actual, expected)
+	}
+}
