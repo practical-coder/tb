@@ -1,10 +1,10 @@
 module github.com/practical-coder/tb
 
-go 1.17
+go 1.18
 
 require (
 	github.com/rs/zerolog v1.26.1
-	github.com/spf13/cobra v1.3.0
+	github.com/spf13/cobra v1.4.0
 )
 
 require (
