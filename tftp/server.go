@@ -58,7 +58,7 @@ func (s *Server) Serve(conn net.PacketConn) error {
 
 		err = rrq.UnmarshalBinary(buf)
 		if err != nil {
-			log.Info().Err(err).Msgf("[%s] Bad Request!")
+			log.Info().Err(err).Msgf("[%s] Bad Request!", rrq.Filename)
 			continue
 		}
 
