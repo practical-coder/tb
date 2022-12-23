@@ -14,7 +14,7 @@ const (
 	MaxPayloadSize uint32 = 10 << 20 // 10MB
 )
 
-var ErrMaxPayloadSize = errors.New("MaxPayloadSize exceeded")
+var ErrMaxPayloadSize = fmt.Errorf("MaxPayloadSize exceeded")
 
 type Payload interface {
 	fmt.Stringer
@@ -38,7 +38,7 @@ func decode(r io.Reader) (Payload, error) {
 	case StringType:
 		payload = new(String)
 	default:
-		return nil, errors.New("Unkown Type")
+		return nil, errors.New("unkown type")
 	}
 
 	_, err = payload.ReadFrom(

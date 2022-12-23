@@ -2,7 +2,7 @@ package types
 
 import (
 	"encoding/binary"
-	"errors"
+	"fmt"
 	"io"
 )
 
@@ -43,7 +43,7 @@ func (s *String) ReadFrom(r io.Reader) (int64, error) {
 	var n int64 = 1
 
 	if payloadType != StringType {
-		return n, errors.New("Invalid Type of StringType")
+		return n, fmt.Errorf("invalid type of StringType")
 	}
 
 	var size uint32

@@ -68,7 +68,7 @@ func (rr *ReadReq) UnmarshalBinary(p []byte) error {
 
 	rr.Filename, err = r.ReadString(0) // read until null-byte separator
 	if err != nil {
-		return errors.New("Read filename up to and INCLUDING null-byte")
+		return errors.New("read filename up to and including null-byte")
 	}
 
 	rr.Filename = RemoveNullByte(rr.Filename)
@@ -78,7 +78,7 @@ func (rr *ReadReq) UnmarshalBinary(p []byte) error {
 
 	rr.Mode, err = r.ReadString(0) // read until ending null-byte
 	if err != nil {
-		return errors.New("Read mode up to and INCLUDING null-byte")
+		return errors.New("read mode up to and including null-byte")
 	}
 
 	rr.Mode = RemoveNullByte(rr.Mode)
@@ -88,7 +88,7 @@ func (rr *ReadReq) UnmarshalBinary(p []byte) error {
 
 	actualMode := strings.ToLower(rr.Mode)
 	if actualMode != "octet" {
-		return errors.New("only octet mode supported!")
+		return errors.New("only octet mode supported")
 	}
 
 	return nil

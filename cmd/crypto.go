@@ -4,7 +4,7 @@ import (
 	"crypto/md5"
 	"crypto/sha512"
 	"fmt"
-	"io/ioutil"
+	"os"
 
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
@@ -40,7 +40,7 @@ var cryptoMD5Cmd = &cobra.Command{
 		}
 
 		for _, filename := range args {
-			file, err := ioutil.ReadFile(filename)
+			file, err := os.ReadFile(filename)
 			if err != nil {
 				log.Info().Err(err).Str("filename", filename).Msgf("Error reading file!")
 				continue
@@ -63,7 +63,7 @@ var cryptoSHA256Cmd = &cobra.Command{
 		}
 
 		for _, filename := range args {
-			file, err := ioutil.ReadFile(filename)
+			file, err := os.ReadFile(filename)
 			if err != nil {
 				log.Info().Err(err).Str("filename", filename).Msgf("Error reading file!")
 				continue

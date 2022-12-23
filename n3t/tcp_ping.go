@@ -41,7 +41,7 @@ func TcpPing(params PingParams) {
 				Interface("connection", conn).
 				Msg("DialTimeout Error")
 			netErr, isNetErr := err.(net.Error)
-			if !isNetErr && !netErr.Temporary() {
+			if !isNetErr && !netErr.Timeout() {
 				os.Exit(2)
 			}
 		} else {

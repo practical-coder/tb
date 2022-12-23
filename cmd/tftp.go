@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"io/ioutil"
+	"os"
 
 	"github.com/practical-coder/tb/tftp"
 	"github.com/rs/zerolog/log"
@@ -33,7 +33,7 @@ var tftpServerCmd = &cobra.Command{
 	Short:   "UDP basic TFTP server listening on a given addr <host:port> serving file <file_path>",
 	Long:    "UDP basic TFTP server listening on a given addr <host:port> serving file <file_path>",
 	Run: func(cmd *cobra.Command, args []string) {
-		payload, err := ioutil.ReadFile(tftpFilename)
+		payload, err := os.ReadFile(tftpFilename)
 		if err != nil {
 			log.Info().Err(err).Msgf("Problem with file in path: %s", tftpFilename)
 		}

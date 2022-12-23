@@ -21,6 +21,10 @@ func TestEchoServerUDP(t *testing.T) {
 		_ = client.Close()
 	}()
 
+	if err != nil {
+		t.Fatal(err)
+	}
+
 	msg := []byte("ping")
 	_, err = client.WriteTo(msg, serverAddr)
 	if err != nil {

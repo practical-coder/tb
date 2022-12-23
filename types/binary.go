@@ -41,7 +41,7 @@ func (b *Binary) ReadFrom(r io.Reader) (int64, error) {
 	}
 	var n int64 = 1
 	if payloadType != BinaryType {
-		return n, errors.New("Invalid Type of Binary")
+		return n, errors.New("invalid type of binary")
 	}
 
 	var size uint32

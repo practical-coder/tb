@@ -3,7 +3,6 @@ package n3t
 import (
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net"
 	"net/http"
 	"strings"
@@ -62,7 +61,7 @@ func TestSimpleHTTPServer(t *testing.T) {
 			t.Errorf("%d: expected status code: %d; actual status code: %d", i, c.code, resp.StatusCode)
 		}
 
-		b, err := ioutil.ReadAll(resp.Body)
+		b, err := io.ReadAll(resp.Body)
 		if err != nil {
 			t.Errorf("%d: %v", i, err)
 			continue
@@ -91,7 +90,7 @@ func (dh DefaultHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	case http.MethodHead:
 		w.WriteHeader(http.StatusMethodNotAllowed)
 	case http.MethodPost:
-		body, err := ioutil.ReadAll(r.Body)
+		body, err := io.ReadAll(r.Body)
 		defer r.Body.Close()
 		if err != nil {
 			w.WriteHeader(http.StatusBadRequest)

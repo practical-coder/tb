@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"bytes"
 	"io"
-	"io/ioutil"
 	"os"
 
 	"github.com/rs/zerolog/log"
@@ -15,7 +14,7 @@ func Count(path string) {
 	var data []byte
 
 	if path == "-" {
-		data, err = ioutil.ReadAll(os.Stdin)
+		data, err = io.ReadAll(os.Stdin)
 	} else {
 		data, err = os.ReadFile(path)
 	}

@@ -51,7 +51,7 @@ func (e *Err) UnmarshalBinary(p []byte) error {
 	}
 
 	if opcode != OpErr {
-		return errors.New("invalid operation code!")
+		return errors.New("invalid operation code")
 	}
 
 	err = binary.Read(r, binary.BigEndian, &e.Error) // read error code

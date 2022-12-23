@@ -45,15 +45,12 @@ func printenv(args []string, format string) {
 
 		}
 	} else {
-		envVars := make([]EnvVar, 0)
-
 		for _, env := range os.Environ() {
 			envSlice := strings.Split(env, "=")
 			ev := EnvVar{
 				Key:   envSlice[0],
 				Value: envSlice[1],
 			}
-			envVars = append(envVars, ev)
 
 			tmpl, err := template.New("env-vars").Parse(format)
 			if err != nil {

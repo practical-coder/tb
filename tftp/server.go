@@ -31,11 +31,11 @@ func (s Server) ListenAndServe(addr string) error {
 
 func (s *Server) Serve(conn net.PacketConn) error {
 	if conn == nil {
-		return errors.New("nil connection!")
+		return errors.New("nil connection")
 	}
 
 	if s.Payload == nil {
-		return errors.New("Payload is required!")
+		return errors.New("payload is required")
 	}
 
 	if s.Retries == 0 {

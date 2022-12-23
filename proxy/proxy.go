@@ -38,5 +38,5 @@ func proxyConn(source, destination string) error {
 	}()
 
 	_, err = io.Copy(connDestination, connSource)
-	return nil
+	return err
 }
