@@ -2,7 +2,6 @@ package proxy
 
 import (
 	"io"
-	"net"
 )
 
 func proxy(source io.Reader, destination io.Writer) error {
@@ -20,6 +19,7 @@ func proxy(source io.Reader, destination io.Writer) error {
 	return err
 }
 
+/*
 func proxyConn(source, destination string) error {
 	connSource, err := net.Dial("tcp", source)
 	if err != nil {
@@ -40,3 +40,4 @@ func proxyConn(source, destination string) error {
 	_, err = io.Copy(connDestination, connSource)
 	return err
 }
+*/
