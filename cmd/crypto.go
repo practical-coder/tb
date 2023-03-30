@@ -17,6 +17,7 @@ func init() {
 		cryptoMD5Cmd,
 		cryptoSHA256Cmd,
 	)
+	cryptoMD5Cmd.Flags().String("text", "", "string value")
 }
 
 var cryptoCmd = &cobra.Command{
@@ -34,6 +35,12 @@ var cryptoMD5Cmd = &cobra.Command{
 	Short:   "md5 hash function on files in arguments",
 	Long:    "md5 hash function on files in arguments",
 	Run: func(cmd *cobra.Command, args []string) {
+		sValue, err := cmd.Flags().GetString("text")
+		if err == nil && sValue != "" {
+			fmt.Printf("%s\tMD5: %x\n", sValue, md5.Sum([]byte(sValue)))
+			return
+		}
+
 		if len(args) == 0 {
 			cmd.Help()
 			return
