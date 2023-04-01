@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/mattn/go-isatty"
 	"github.com/spf13/cobra"
 )
 
@@ -22,6 +23,23 @@ var ttyCmd = &cobra.Command{
 	},
 }
 
+var isttyCmd = &cobra.Command{
+	Use:   "istty",
+	Short: "TTY",
+	Long:  `TTY`,
+	Run: func(cmd *cobra.Command, args []string) {
+
+		if isatty.IsTerminal(os.Stdout.Fd()) || isatty.IsCygwinTerminal(os.Stdout.Fd()) {
+			fmt.Println("TTY: interactive terminal")
+		} else {
+			fmt.Println("Not a TTY terminal")
+		}
+	},
+}
+
 func init() {
-	rootCmd.AddCommand(ttyCmd)
+	rootCmd.AddCommand(
+		ttyCmd,
+		isttyCmd,
+	)
 }
