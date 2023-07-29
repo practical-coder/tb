@@ -37,6 +37,10 @@ func Epoch() {
 	fmt.Printf("\nStart of the Epoch: %s\n", startEpoch)
 	t := time.Now().Unix()
 	fmt.Printf("Seconds since Epoch: %d\n", t)
+	mt := time.Now().UnixMilli()
+	fmt.Printf("Milliseconds since Epoch: %d\n", mt)
+	ut := time.Now().UnixMicro()
+	fmt.Printf("Microseconds since Epoch: %d\n", ut)
 	nt := time.Now().UnixNano()
 	fmt.Printf("Nanoseconds since Epoch: %d\n", nt)
 }
