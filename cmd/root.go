@@ -16,11 +16,13 @@ func init() {
 		netCmd,
 		tftpCmd,
 		langCmd,
+		tmplCmd,
 		txtCmd,
 		printenvCmd,
 		pwdCmd,
 		timeCmd,
 		whichCmd,
+		wsCmd,
 		versionCmd,
 	)
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})

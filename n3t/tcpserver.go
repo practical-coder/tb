@@ -1,8 +1,10 @@
 package n3t
 
 import (
+	"fmt"
 	"net"
 	"os"
+	"time"
 
 	"github.com/rs/zerolog/log"
 )
@@ -34,6 +36,13 @@ func Listener(address string) {
 		go func(conn net.Conn) {
 			defer conn.Close()
 
+			ts := fmt.Sprintf("\n%s\n", time.Now().Format(time.RFC3339))
+			conn.Write([]byte(ts))
+			clientLog := log.Output(conn)
+			clientLog.Info().
+				Str("local_address", conn.RemoteAddr().String()).
+				Str("remote_address", conn.LocalAddr().String()).
+				Msg("Connection Established")
 			log.Info().
 				Interface("local_address", conn.LocalAddr()).
 				Interface("remote_address", conn.RemoteAddr()).
