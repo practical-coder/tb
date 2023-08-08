@@ -21,11 +21,11 @@ var wsCmd = &cobra.Command{
 }
 
 var echoServerCmd = &cobra.Command{
-	Use:   "echoserver",
-	Short: "Websockets echo server",
-	Long:  "Websockets echo server",
+	Use:   "server",
+	Short: "Websockets server",
+	Long:  "Websockets server",
 	Run: func(cmd *cobra.Command, args []string) {
-		ws.EchoServer()
+		ws.StartServer()
 	},
 }
 
