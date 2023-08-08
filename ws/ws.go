@@ -8,7 +8,7 @@ import (
 )
 
 func StartServer() {
-	fs := http.FileServer(http.Dir("."))
+	fs := http.FileServer(http.Dir("srv"))
 	http.Handle("/", fs)
 	http.Handle("/echo", websocket.Handler(Echo))
 	http.Handle("/cputemp", websocket.Handler(Temperature))
